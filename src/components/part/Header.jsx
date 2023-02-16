@@ -1,22 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../../styles/header.scss'
 import darkmodeIcon from '../../images/darkmode.png'
 
 function Header(props) {
 
-    const [darkMode, setDarkMode] = useState(false);
-
-    function newMode() {
-        setDarkMode(!darkMode);
-        props.setMode(darkMode);
-    }
+    const appNode = document.querySelector('.App');
 
     return (
         <header>
             <div className="wrapper">
                 <div className="title">User List</div>
                 <button className='darkmode'>
-                    <img onClick={newMode} 
+                    <img onClick={() => appNode.classList.toggle('darkmode')} 
                         className='darkmode__icon'
                         src={darkmodeIcon}
                         alt="mode"
