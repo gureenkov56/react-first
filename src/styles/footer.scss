@@ -1,0 +1,13 @@
+.Footer {
+    border-top: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+
+    &__icon {
+        width: 20px;
+        margin: 10px;
+    }
+}
