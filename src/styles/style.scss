@@ -11,8 +11,25 @@ html, body {
         flex-direction: column;
         min-height: 100vh;
 
+        &.darkmode {
+            background-color: rgb(12, 12, 12);
+            color: rgb(227, 227, 227);
+
+            .darkmode {
+                background-color: #ffffff;
+            }
+        }
+
         .content {
             flex: 1;
+        }
+
+        button {
+            border: none;
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
         }
     }
 }

@@ -1,4 +1,4 @@
-.Footer {
+footer {
     border-top: 1px solid grey;
     display: flex;
     justify-content: center;
@@ -6,7 +6,7 @@
     padding: 1rem;
 
 
-    &__icon {
+    .icon {
         width: 20px;
         margin: 10px;
     }

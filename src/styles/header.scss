@@ -1,0 +1,30 @@
+header {
+    border-bottom: 1px solid grey;
+    padding: 1rem;
+    
+
+
+    .wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+            font-size: 2rem;
+        }
+    
+        .darkmode {
+            border-radius: 50%;
+            height: 30px;
+
+            &__icon {
+                width: 30px;
+
+            }
+        }
+    }
+
+    
+}

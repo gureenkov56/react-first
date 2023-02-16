@@ -5,13 +5,13 @@ import logo from '../../images/icon.png';
 function Footer() {
 
     return (
-        <section className="Footer">
+        <footer>
             <span>Powered by</span>
-            <img className='Footer__icon'
+            <img className='icon'
                 src={logo}
                 alt="React"
             />
-        </section>
+        </footer>
     )
 }
 
