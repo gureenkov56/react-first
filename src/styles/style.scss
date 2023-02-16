@@ -11,6 +11,8 @@ html, body {
         flex-direction: column;
         min-height: 100vh;
 
+        transition: background-color 1s ease, color 1s ease;
+
         &.darkmode {
             background-color: rgb(12, 12, 12);
             color: rgb(227, 227, 227);
@@ -22,6 +24,8 @@ html, body {
 
         .content {
             flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         button {
