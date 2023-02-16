@@ -4,14 +4,12 @@ import darkmodeIcon from '../../images/darkmode.png'
 
 function Header(props) {
 
-    const appNode = document.querySelector('.App');
-
     return (
         <header>
             <div className="wrapper">
                 <div className="title">User List</div>
                 <button className='darkmode'>
-                    <img onClick={() => appNode.classList.toggle('darkmode')} 
+                    <img onClick={() => props.appNode.current.classList.toggle('darkmode')} 
                         className='darkmode__icon'
                         src={darkmodeIcon}
                         alt="mode"

@@ -5,6 +5,11 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        padding: 0;
+    }
     
     .App {
         display: flex;
@@ -25,15 +30,33 @@ html, body {
         .content {
             flex: 1;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 1rem auto;
+            padding: 1rem;
         }
 
         button {
+            display: block;
             border: none;
             background: transparent;
             padding: 0;
             margin: 0;
             cursor: pointer;
+
+            &.btn {
+                padding: .5rem 1rem;
+                border-radius: 5px;
+            }
+
+            &.primary {
+                background-color: rgb(26, 88, 203);
+                color: white;
+            }
+
+            &.danger {
+                background-color: rgb(200, 22, 138);
+                color: white;
+            }
         }
+
     }
 }
