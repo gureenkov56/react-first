@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import User from './User'
+import UILoader from './UI/UILoader';
+import '../styles/userList.scss'
 
 function UserList() {
 
@@ -21,9 +23,11 @@ function UserList() {
 
     return (
         <>
-            {UserList.map(user => 
+            {UserList.map(user =>
                 <User info={user} />
-            ) }
+            )}
+            {UserList.length === 0 && <UILoader />}
+            
         </>
     )
 }
