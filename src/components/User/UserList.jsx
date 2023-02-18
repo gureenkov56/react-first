@@ -3,6 +3,7 @@ import User from './User'
 import UILoader from '../UI/UILoader';
 import '../../styles/userList.scss'
 import UIButton from '../UI/UIButton';
+import UIInput from '../UI/UIInput';
 
 function UserList() {
 
@@ -35,6 +36,11 @@ function UserList() {
 
     return (
         <>
+            <div className='search'>
+            <UIInput 
+                placeholder='Search...'
+            />
+            </div>
             {UserList.map(user =>
                 <User
                     info={user}
