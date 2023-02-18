@@ -1,20 +1,29 @@
-import { useRef } from 'react';
 import '../styles/style.scss';
 import UserList from './UserList';
-import Footer from './part/Footer';
-import Header from './part/Header';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Layout from './Layout';
+import About from './pages/About';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <UserList />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  const app = useRef(null)
-
   return (
-    <div className='App' ref={app}>
-      <Header appNode={app}/>
-      <section className="content">
-        <UserList/>
-      </section>
-      <Footer/>
-    </div>
+      <RouterProvider router={router} />
   );
 }
 
