@@ -17,19 +17,8 @@ function UserList() {
         setUserList(UserList.filter(user => user.id !== id))
     }
 
-    function filterBySearch(search = '') {
-        console.log('fbs', search, ' = search');
-
-        setFilteredUserList(UserList.filter(user =>
-            user.firstName.toLowerCase().includes(search)
-        ))
-    }
-
     function changeSearchValue(event) {
-        console.log('csv');
-        const newSearch = event.target.value;
-        setSearchValue(newSearch);
-        filterBySearch(newSearch);
+        setSearchValue(event.target.value);
     }
 
     useEffect(() => {
@@ -37,8 +26,15 @@ function UserList() {
     }, [])
 
     useEffect(() => {
+
+        function filterBySearch(search = '') {
+            setFilteredUserList(UserList.filter(user =>
+                user.firstName.toLowerCase().includes(search)
+            ))
+        }
+
         filterBySearch(searchValue);
-    },[UserList])
+    }, [UserList, searchValue])
 
     function getUsers() {
         fetch(`https://dummyjson.com/users?limit=10&skip=${Skip}`)
@@ -46,9 +42,6 @@ function UserList() {
             .then(
                 (res) => {
                     setUserList([...UserList, ...res.users]);
-                    // setFilteredUserList([...UserList, ...res.users])
-                    // filterBySearch('');
-                    console.log(res);
                 },
                 (error) => {
                     console.log('Fetch error:', error)
@@ -58,7 +51,6 @@ function UserList() {
                 setIsLoading(false);
                 setSkip(Skip + 10);
             })
-
     }
 
     return (
