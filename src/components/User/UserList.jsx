@@ -8,11 +8,18 @@ import UIInput from '../UI/UIInput';
 function UserList() {
 
     const [UserList, setUserList] = useState([]);
+    const [FilteredUserList, setFilteredUserList] = useState(UserList);
     const [isLoading, setIsLoading] = useState(true);
 
     function removeUser(id) {
-        console.log('remove', id);
         setUserList(UserList.filter(user => user.id !== id))
+    }
+
+    function filterBySearch(event) {
+        const search = event.target.value.toLowerCase();
+        setFilteredUserList(UserList.filter(user => 
+            user.firstName.toLowerCase().includes(search)
+        ))
     }
 
     useEffect(() => {
@@ -25,6 +32,7 @@ function UserList() {
             .then(
                 (res) => {
                     setUserList(res.users);
+                    setFilteredUserList(res.users);
                     console.log(res);
                 },
                 (error) => {
@@ -39,9 +47,10 @@ function UserList() {
             <div className='search'>
             <UIInput 
                 placeholder='Search...'
+                actionOnInput={filterBySearch}
             />
             </div>
-            {UserList.map(user =>
+            {FilteredUserList.map(user =>
                 <User
                     info={user}
                     key={user.id}

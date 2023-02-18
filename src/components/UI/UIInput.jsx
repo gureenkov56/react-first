@@ -1,12 +1,13 @@
 import React from 'react'
 import '../../styles/uiinput.scss'
 
-function UIInput({ placeholder, type }) {
+function UIInput({ placeholder, type, actionOnInput }) {
 
     return (
         <input 
             type={type} 
             placeholder={placeholder}
+            onInput={(event) => actionOnInput(event)}
         />
     )
 }
