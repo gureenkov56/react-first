@@ -1,6 +1,6 @@
 import React from 'react'
-import '../styles/user.scss'
-import UIButton from './UI/UIButton'
+import '../../styles/user.scss'
+import UIButton from '../UI/UIButton'
 
 function User({info}) {
 

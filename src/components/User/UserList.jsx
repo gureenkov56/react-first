@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import User from './User'
-import UILoader from './UI/UILoader';
-import '../styles/userList.scss'
+import UILoader from '../UI/UILoader';
+import '../../styles/userList.scss'
 
 function UserList() {
 
@@ -16,7 +16,7 @@ function UserList() {
                     console.log(res);
                 },
                 (error) => {
-                    console.log('error')
+                    console.log('Fetch error:', error)
                 }
             )
     }, [])
@@ -24,7 +24,7 @@ function UserList() {
     return (
         <>
             {UserList.map(user =>
-                <User info={user} />
+                <User info={user} key={user.id}/>
             )}
             {UserList.length === 0 && <UILoader />}
             

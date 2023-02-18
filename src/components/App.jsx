@@ -1,8 +1,9 @@
 import '../styles/style.scss';
-import UserList from './UserList';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './Layout';
 import About from './pages/About';
+import UserList from './User/UserList';
+import UserProfile from './User/UserProfile';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/user/:id",
+        element: <UserProfile />,
       },
     ],
   },
