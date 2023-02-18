@@ -8,47 +8,67 @@ import UIInput from '../UI/UIInput';
 function UserList() {
 
     const [UserList, setUserList] = useState([]);
-    const [FilteredUserList, setFilteredUserList] = useState(UserList);
+    const [FilteredUserList, setFilteredUserList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [Skip, setSkip] = useState(0);
+    const [searchValue, setSearchValue] = useState('');
 
     function removeUser(id) {
         setUserList(UserList.filter(user => user.id !== id))
     }
 
-    function filterBySearch(event) {
-        const search = event.target.value.toLowerCase();
-        setFilteredUserList(UserList.filter(user => 
+    function filterBySearch(search = '') {
+        console.log('fbs', search, ' = search');
+
+        setFilteredUserList(UserList.filter(user =>
             user.firstName.toLowerCase().includes(search)
         ))
+    }
+
+    function changeSearchValue(event) {
+        console.log('csv');
+        const newSearch = event.target.value;
+        setSearchValue(newSearch);
+        filterBySearch(newSearch);
     }
 
     useEffect(() => {
         getUsers();
     }, [])
 
+    useEffect(() => {
+        filterBySearch(searchValue);
+    },[UserList])
+
     function getUsers() {
-        fetch('https://dummyjson.com/users')
+        fetch(`https://dummyjson.com/users?limit=10&skip=${Skip}`)
             .then(res => res.json())
             .then(
                 (res) => {
-                    setUserList(res.users);
-                    setFilteredUserList(res.users);
+                    setUserList([...UserList, ...res.users]);
+                    // setFilteredUserList([...UserList, ...res.users])
+                    // filterBySearch('');
                     console.log(res);
                 },
                 (error) => {
                     console.log('Fetch error:', error)
                 }
             )
-            .finally(() => setIsLoading(false))
+            .finally(() => {
+                setIsLoading(false);
+                setSkip(Skip + 10);
+            })
+
     }
 
     return (
         <>
             <div className='search'>
-            <UIInput 
-                placeholder='Search...'
-                actionOnInput={filterBySearch}
-            />
+                <UIInput
+                    placeholder='Search...'
+                    actionOnInput={changeSearchValue}
+                    value={searchValue}
+                />
             </div>
             {FilteredUserList.map(user =>
                 <User
@@ -56,18 +76,21 @@ function UserList() {
                     key={user.id}
                     removeUser={removeUser}
                 />
-            )}
+            )
+            }
             {
-                UserList.length === 0 &&
-                !isLoading &&
-                <div>
-                <p>Список пуст</p>
-                    <UIButton 
+                <UIButton UIButton
                     color={'primary'}
                     actionOnClick={getUsers}
-                    >
-                        Загрузить еще
-                    </UIButton>
+                >
+                    Загрузить еще
+                </UIButton>
+            }
+            {
+                FilteredUserList.length === 0 &&
+                !isLoading &&
+                <div>
+                    <p>Список пуст</p>
                 </div>
             }
             {isLoading && <UILoader />}
