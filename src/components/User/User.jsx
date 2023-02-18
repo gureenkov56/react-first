@@ -1,8 +1,9 @@
 import React from 'react'
 import '../../styles/user.scss'
 import UIButton from '../UI/UIButton'
+import { Link } from 'react-router-dom'
 
-function User({info}) {
+function User({ info }) {
 
     return (
         <>
@@ -16,9 +17,11 @@ function User({info}) {
                     <div className="info__location">{info.address.city}</div>
                 </div>
                 <div className="buttons">
-                    <UIButton color='primary'
-                    >Profile</UIButton>
-
+                    <Link to={`user/${info.id}`} state={{ userData: info }}>
+                        <UIButton color='primary'>
+                            Profile
+                        </UIButton>
+                    </Link>
                     <UIButton color='danger'
                     >Remove</UIButton>
                 </div>
