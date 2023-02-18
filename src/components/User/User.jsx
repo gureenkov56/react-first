@@ -3,7 +3,7 @@ import '../../styles/user.scss'
 import UIButton from '../UI/UIButton'
 import { Link } from 'react-router-dom'
 
-function User({ info }) {
+function User({ info, removeUser }) {
 
     return (
         <>
@@ -22,8 +22,12 @@ function User({ info }) {
                             Profile
                         </UIButton>
                     </Link>
-                    <UIButton color='danger'
-                    >Remove</UIButton>
+                    <UIButton 
+                    actionOnClick={() => removeUser(info.id)}
+                    color='danger'
+                    >
+                        Remove
+                    </UIButton>
                 </div>
             </section>
         </>

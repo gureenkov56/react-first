@@ -1,9 +1,12 @@
 import React from 'react'
 
-function UIButton({children, color}) {
+function UIButton({children, color, actionOnClick}) {
 
     return (
-        <button className={`btn ${color}`}>
+        <button 
+            onClick={actionOnClick}
+            className={`btn ${color}`}
+        >
             {children}
         </button>
     )
